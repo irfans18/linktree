@@ -19,7 +19,7 @@ class CreateLinksTable extends Migration
             $table->integer("user_id");
             $table->string("name")->unique();
             $table->string("cname")->unique()->nullable();
-            $table->string("url")->nullable();
+            $table->string("url");
             $table->integer("hit")->default(0);
 
             $table->softDeletes();

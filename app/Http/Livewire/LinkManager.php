@@ -14,36 +14,61 @@ class LinkManager extends Component
 {
    use WithPagination;
    public $search = '';
+   public $isEdit = false;
    public $record = [];
+   public $rowId;
 
    public function render()
    {
       return view('livewire.link-manager', [
          // "links" => Link::where('name', 'like', '%'.$this->search.'%')->paginate(10),
-         "links" => Link::where('name', 'like', '%'.$this->search.'%')
-                     ->orWhere('cname', 'like', '%'.$this->search.'%')->paginate(10),
+         "links" => Link::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('cname', 'like', '%' . $this->search . '%')->paginate(10),
          // "links" => Link::all(),
       ]);
    }
 
-   public function create(){
-      // dd("sss");
-      // dd($this->search);
-      $this->record['cname'] = "gh";
-      $this->record['url'] = "https://github.com/irfans18";
-      if(!empty($this->search)) $this->record['name'] = $this->search;
-      $link = Link::updateOrCreate([
-         'user_id' => Auth::user()->id,
-         'name' => $this->record['name'],
-      ],[
-         'cname' => $this->record['cname'],
-         'url' => $this->record['url'],
-      ]);
+   public function create()
+   {
+      if (!empty($this->search)) {
+         $this->new['name'] = $this->search;
+         $link = Link::create([
+            'user_id' => Auth::user()->id,
+            'name' => $this->new['name'],
+            'cname' => empty($this->new['cname']) ? null : $this->new['cname'],
+            'url' => $this->new['url'],
+         ]);
 
+         $link->save();
+      }
+   }
+
+   public function update()
+   {
+      $link = Link::find($this->rowId);
+      $link->name = $this->record['name'];
+      $link->cname = empty($this->record['cname']) ? null : $this->record['cname'];
+      $link->url = $this->record['url'];
+      
       $link->save();
    }
 
-   public function delete($id){
+   public function editModal($link)
+   {
+      // dd($link);
+      $this->rowId = $link['id'];
+      $this->record = $link;
+      // dd($this->record);
+
+      if ($this->isEdit) {
+         return $this->isEdit = false;
+      } else {
+         return $this->isEdit = true;
+      }
+   }
+
+   public function delete($id)
+   {
       $link = Link::find($id);
       $link->delete();
    }
