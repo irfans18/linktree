@@ -27,7 +27,7 @@ Route::get('/{param}', [GoToLink::class, "go"]);
 // })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-   Route::get('/dashboard', function () {
+   Route::get('/home/dashboard', function () {
       return view('dashboard');
    })->name('dashboard');
 
