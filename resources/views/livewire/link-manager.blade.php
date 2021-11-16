@@ -12,9 +12,16 @@
       </button>
    </div>
 
+   <div class="mx-12"><span>use alphanumeric character!</span></div>
+
+   {{-- add new --}}
+   {{-- <div>
+      @include('livewire.create-link')
+   </div> --}}
+
 
    {{-- big screen --}}
-   <div class="my-6 hidden md:flex mx-12">
+   <div class="my-3 hidden md:flex mx-12">
       <table class="w-full ">
          <thead class="bg-gray-50">
             <tr>

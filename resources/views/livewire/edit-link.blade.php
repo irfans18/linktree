@@ -6,9 +6,11 @@
          <input  class=" rounded" wire:keydown.enter="update" wire:model="record.name" type="text">
       </div>
       <div></div>
-      <div class="px-8">
+      <div class="">
          <label for="name">cname</label>
-         <input  class="rounded" wire:keydown.enter="update" wire:model="record.cname" type="text">
+         <input  class="rounded" wire:keydown.enter="update" wire:model="record.cname" type="text" placeholder="max 3 digits alphanumeric">
+         <span class="error text-xs">max 3 digits</span>
+         <span class="error text-xs">ex. DDD</span>
       </div>
       <div></div>
       <div class="px-8">
