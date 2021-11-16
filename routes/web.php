@@ -26,12 +26,12 @@ Route::get('/{param}', [GoToLink::class, "go"]);
 //    return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
    Route::get('/home/dashboard', function () {
       return view('dashboard');
    })->name('dashboard');
 
-   Route::get('link', LinkManager::class)->name('link');
+   // Route::get('link', LinkManager::class)->name('link');
 });
 
 require __DIR__ . '/auth.php';
