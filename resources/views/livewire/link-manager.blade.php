@@ -6,7 +6,7 @@
 
 <div>
    <div class="flex justify-center">
-      <input type="text" wire:model="search" class="w-1/8 rounded-full">
+      <input type="text" wire:model="search" wire:keydown.enter="create" class="w-1/8 rounded-full" placeholder="search or add new">
       <button wire:click="create()" type="submit" class="bg-blue-600 mx-4 text-white font-bold rounded-full">
          <pre>  +  </pre>
       </button>
@@ -40,7 +40,7 @@
                   </td>
                   <td class="text-sm px-4 py-3 lowercase w-2/8">{{ $item->name }}</td>
                   <td class="text-sm px-4 py-3 lowercase w-2/8">{{ $item->cname }}</td>
-                  <td class="text-sm px-4 py-3 lowercase w-1/2 underline italic">
+                  <td class="text-sm text-purple-500 px-4 py-3 lowercase w-1/2 underline italic">
                      <a href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
                   </td>
 
@@ -102,7 +102,7 @@
                   <td class="text-sm px-4 py-3 lowercase w-max border">{{ $item->cname }}</td>
                </tr>
                <tr>
-                  <td colspan="2" class="text-sm px-4 py-3 lowercase w-auto border underline italic">
+                  <td colspan="2" class="text-sm text-purple-500 px-4 py-3 lowercase w-auto border underline italic">
                      <a href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
                   </td>
                </tr>

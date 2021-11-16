@@ -3,17 +3,17 @@
       <div></div>
       <div class="px-8">
          <label for="name">name</label>
-         <input  class=" rounded" wire:model="record.name" type="text">
+         <input  class=" rounded" wire:keydown.enter="update" wire:model="record.name" type="text">
       </div>
       <div></div>
       <div class="px-8">
          <label for="name">cname</label>
-         <input  class="rounded" wire:model="record.cname" type="text">
+         <input  class="rounded" wire:keydown.enter="update" wire:model="record.cname" type="text">
       </div>
       <div></div>
       <div class="px-8">
          <label for="name">url</label>
-         <input  class="rounded" wire:model="record.url" type="text">
+         <input  class="rounded" wire:keydown.enter="update" wire:model="record.url" type="text">
       </div>
       <div></div>
       {{-- <div ><button wire:click="create" class="py-2 bg-blue-600 rounded text-white"><pre>  save  </pre></button></div> --}}
