@@ -48,8 +48,10 @@
                   </td>
                   <td class="text-sm px-4 py-3 lowercase w-2/8">{{ $item->name }}</td>
                   <td class="text-sm px-4 py-3 lowercase w-2/8">{{ $item->cname }}</td>
-                  <td class="text-sm text-purple-500 px-4 py-3 lowercase w-1/2 underline italic">
-                     <a href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
+                  <td class="text-sm px-4 py-3 lowercase w-1/2">
+                     <span>real :</span><a class="underline italic text-purple-500" href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
+                     <hr>
+                     <span>pretty : </span><a class="underline italic text-purple-500" href=" {{ env("APP_URL") . $item->name }} " target="_blank">{{ env("APP_URL") . $item->name }}</a>
                   </td>
                   <td class="text-sm px-4 py-3 lowercase w-1/112">{{ $item->hit }}</td>
 
@@ -120,7 +122,7 @@
                </tr>
                <tr>
                   <td colspan="3" class="text-sm text-purple-500 px-4 py-3 lowercase w-auto border underline italic">
-                     <a href=" {{ "https://" . env("APP_URL") . $item->name }} " target="_blank">{{ "https://" . env("APP_URL") . $item->name }}</a>
+                     <a href=" {{ env("APP_URL") . $item->name }} " target="_blank">{{ env("APP_URL") . $item->name }}</a>
                   </td>
                </tr>
 
