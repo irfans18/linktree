@@ -19,7 +19,10 @@ class GoToLink extends Controller
       } else {
          $link =  Link::where('name', 'like', '%' . $param . '%')
             ->orWhere('cname', 'like', '%' . $param . '%')->first();
-         // dd($link['url']);
+         $count = $link->hit;
+         $link->hit = $count+1;
+         $link->save();
+         // dd($link['hit']);
          return redirect($link->url);
       }
    }
