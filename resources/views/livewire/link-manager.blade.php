@@ -29,6 +29,7 @@
                <th class="text-sm px-4 py-3 lowercase w-2/8">name</th>
                <th class="text-sm px-4 py-3 lowercase w-2/8">cname</th>
                <th class="text-sm px-4 py-3 lowercase w-1/2">url</th>
+               <th class="text-sm text-left px-4 py-3 lowercase w-1/12">hit</th>
                <th class="text-sm px-4 py-3 lowercase w-1">/</th>
             </tr>
          </thead>
@@ -50,6 +51,8 @@
                   <td class="text-sm text-purple-500 px-4 py-3 lowercase w-1/2 underline italic">
                      <a href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
                   </td>
+                  <td class="text-sm px-4 py-3 lowercase w-1/112">{{ $item->hit }}</td>
+
 
                   {{-- Action button --}}
                   <td class="py-4 text-left text-sm text-gray-500 flex">
@@ -91,6 +94,7 @@
                <th class="text-sm px-4 py-3 lowercase w-1">#</th>
                <th class="text-sm px-4 py-3 lowercase w-max">name</th>
                <th class="text-sm px-4 py-3 lowercase w-max">cname</th>
+               <th class="text-sm px-4 py-3 lowercase w-max">hit</th>
             </tr>
          </thead>
          <tbody>
@@ -102,15 +106,21 @@
                   $i++;
                @endphp
                <tr class="hover:bg-green-50">
-                  <td rowspan="2" class="text-sm px-4 py-3 lowercase w-1 border">
+                  <td rowspan="3" class="text-sm px-4 py-3 lowercase w-1 border">
                         {{ $i }}
                   </td>
                   <td class="text-sm px-4 py-3 lowercase w-max border">{{ $item->name }}</td>
                   <td class="text-sm px-4 py-3 lowercase w-max border">{{ $item->cname }}</td>
+                  <td class="text-sm px-4 py-3 lowercase w-max border">{{ $item->hit }}</td>
                </tr>
                <tr>
-                  <td colspan="2" class="text-sm text-purple-500 px-4 py-3 lowercase w-auto border underline italic">
+                  <td colspan="3" class="text-sm text-purple-500 px-4 py-3 lowercase w-auto border underline italic">
                      <a href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
+                  </td>
+               </tr>
+               <tr>
+                  <td colspan="3" class="text-sm text-purple-500 px-4 py-3 lowercase w-auto border underline italic">
+                     <a href=" {{ "https://" . env("APP_URL") . $item->name }} " target="_blank">{{ "https://" . env("APP_URL") . $item->name }}</a>
                   </td>
                </tr>
 
