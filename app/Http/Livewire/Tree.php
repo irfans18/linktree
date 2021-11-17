@@ -11,6 +11,6 @@ class Tree extends Component
     {
         return view('livewire.tree', [
            'tree' => Link::all(),
-        ]);
+        ])->extends('layouts.app');
     }
 }

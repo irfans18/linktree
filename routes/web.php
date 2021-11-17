@@ -3,6 +3,7 @@
 use App\Http\Controllers\GoToLink;
 use App\Http\Livewire\LinkManager;
 use App\Http\Livewire\Test;
+use App\Http\Livewire\Tree;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //    return view('welcome');
 // });
-Route::get('/', function () {
-   return view('info');
-});
+Route::get('/', [Tree::class, "render"]);
 
 Route::get('/{param}', [GoToLink::class, "go"]);
 
