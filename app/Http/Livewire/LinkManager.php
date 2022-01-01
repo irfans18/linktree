@@ -18,12 +18,14 @@ class LinkManager extends Component
    public $record = [];
    public $new = [];
    public $rowId;
+   public $isOpen = false;
 
    public function render()
    {
       return view('livewire.link-manager', [
          // "links" => Link::where('name', 'like', '%'.$this->search.'%')->paginate(10),
          "links" => Link::where('name', 'like', '%' . $this->search . '%')
+            ->where('user_id', Auth::user()->id)
             ->orWhere('cname', 'like', '%' . $this->search . '%')->orderBy('created_at', 'desc')->paginate(10),
          // ->orWhere('cname', 'like', '%' . $this->search . '%')->orderBy('updated_at','desc')->paginate(10),
          // "links" => Link::all(),
@@ -37,20 +39,38 @@ class LinkManager extends Component
          $link = Link::withTrashed()->where('name', $this->new['name'])
             ->orWhere('cname', $this->new['name'])->first();
          if ($link != null) {
-            $link->restore();
+            if ($link->user_id == Auth::user()->id) {
+               $link->restore();
+            } else {
+               $this->isOpen();
+            }
          } else {
-            $link = Link::create([
-               'user_id' => Auth::user()->id,
-               'name' => $this->new['name'],
-               'cname' => empty($this->new['cname']) ? null : $this->new['cname'],
-               'url' => empty($this->new['url']) ? "https://" : $this->new['url'],
-            ]);
+            if ($this->isOpen()) {
+               $this->isOpen();
+            } else {
+               $link = Link::create([
+                  'user_id' => Auth::user()->id,
+                  'name' => $this->new['name'],
+                  'cname' => empty($this->new['cname']) ? null : $this->new['cname'],
+                  'url' => empty($this->new['url']) ? "https://" : $this->new['url'],
+               ]);
 
-            $link->save();
-            reset($this->new);
+               $link->save();
+               reset($this->new);
+            }
          }
       }
+
       $this->reset(['search']);
+   }
+
+   private function isOpen()
+   {
+      if ($this->isOpen) {
+         return $this->isOpen = false;
+      } else {
+         return $this->isOpen = true;
+      }
    }
 
    public function update()

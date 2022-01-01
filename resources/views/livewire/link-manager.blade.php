@@ -12,6 +12,13 @@
       </button>
    </div>
 
+   {{-- @include('livewire.modal-warning'); --}}
+   @if ($isOpen)
+      <p class="text-center text-red-500">This link has taken by another user</p>
+   @else
+      
+   @endif
+
    <div class="mx-12"><span>use alphanumeric character!</span></div>
 
    {{-- add new --}}
@@ -51,7 +58,7 @@
                   <td class="text-sm px-4 py-3 lowercase w-1/2">
                      <span>real :</span><a class="underline italic text-purple-500" href=" {{ $item->url }} " target="_blank">{{ $item->url }}</a>
                      <hr>
-                     <span>pretty : </span><a class="underline italic text-purple-500" href=" {{ env("APP_URL") . $item->name }} " target="_blank">{{ env("APP_URL") . $item->name }}</a>
+                     <span>pretty : </span><a class="underline italic text-purple-500" href=" {{ env('APP_URL') . '/' . $item->name }} " target="_blank">{{ env('APP_URL') . '/' . $item->name }}</a>
                   </td>
                   <td class="text-sm px-4 py-3 lowercase w-1/112">{{ $item->hit }}</td>
 
