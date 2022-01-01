@@ -17,7 +17,12 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-      if(Auth::user() && Auth::user()->roles == 'ADMIN') {
+      // if(Auth::user() && Auth::user()->roles == 'ADMIN') {
+      //   return $next($request);
+      // } else {
+      //   return redirect('/');
+      // }
+      if(Auth::user() && Auth::user()->id == 1) {
         return $next($request);
       } else {
         return redirect('/');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GoToLink;
+use App\Http\Livewire\AllLink;
 use App\Http\Livewire\LinkManager;
 use App\Http\Livewire\Test;
 use Illuminate\Support\Facades\Route;
@@ -20,18 +21,18 @@ Route::get('/', function () {
    return view('welcome');
 });
 
-Route::get('/{param}', [GoToLink::class, "go"]);
+Route::get('/{param}', [GoToLink::class, 'go']);
 
-// Route::get('/dashboard', function () {
-//    return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+// Route::get('/home/dashboard', [LinkManager::class, 'render'])->middleware(['auth'])->name('dashboard');
+Route::get('/home/all', function () {
+   return view('admin');
+})->middleware(['auth', 'admin'])->name('all');
 
 Route::middleware(['auth:sanctum'])->group(function () {
    Route::get('/home/dashboard', function () {
       return view('dashboard');
    })->name('dashboard');
-
-   // Route::get('link', LinkManager::class)->name('link');
 });
+
 
 require __DIR__ . '/auth.php';

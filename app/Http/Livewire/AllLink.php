@@ -3,14 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Link;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isEmpty;
-
-class LinkManager extends Component
+class AllLink extends Component
 {
    use WithPagination;
    public $search = '';
@@ -19,19 +16,14 @@ class LinkManager extends Component
    public $new = [];
    public $rowId;
    public $isOpen = false;
+ 
 
    public function render()
    {
-      return view('livewire.link-manager', [
+      return view('livewire.all-link', [
          // "links" => Link::where('name', 'like', '%'.$this->search.'%')->paginate(10),
-         "links" => Link::where([
-            ['name', 'like', '%' . $this->search . '%'],
-            ['user_id', Auth::user()->id],
-            ])
-            ->orWhere([['cname', 'like', '%' . $this->search . '%'],
-            ['user_id', Auth::user()->id],
-            ])->orderBy('created_at', 'desc')->paginate(10),
-         // "links" => Link::all(),
+         "links" => Link::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('cname', 'like', '%' . $this->search . '%')->orderBy('updated_at', 'desc')->paginate(10),
       ]);
    }
 
@@ -50,21 +42,13 @@ class LinkManager extends Component
          } else {
             if ($this->isOpen) {
                $this->isOpen();
-            } else {
-               $link = Link::create([
-                  'user_id' => Auth::user()->id,
-                  'name' => $this->new['name'],
-                  'cname' => empty($this->new['cname']) ? null : $this->new['cname'],
-                  'url' => empty($this->new['url']) ? "https://" : $this->new['url'],
-               ]);
-
-               $link->save();
-               reset($this->new);
+            }else{
+               $this->isOpen();
             }
          }
       }
-
-      $this->reset(['search']);
+      // dd($this->isOpen);
+      // $this->reset(['search']);
    }
 
    private function isOpen()
