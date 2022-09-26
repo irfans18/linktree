@@ -23,11 +23,11 @@ class GuestLink extends Component
          // "links" => Link::where('name', 'like', '%'.$this->search.'%')->paginate(10),
          "links" => Link::where([
             ['name', 'like', '%' . $this->search . '%'],
-            ['user_id', 2],
+            ['user_id', 3],
          ])
             ->orWhere([
                ['cname', 'like', '%' . $this->search . '%'],
-               ['user_id', 2],
+               ['user_id', 3],
             ])->orderBy('created_at', 'desc')->paginate(10),
          // "links" => Link::all(),
       ]);
@@ -40,7 +40,7 @@ class GuestLink extends Component
          $link = Link::withTrashed()->where('name', $this->new['name'])
             ->orWhere('cname', $this->new['name'])->first();
          if ($link != null) {
-            if ($link->user_id == 2) {
+            if ($link->user_id == 3) {
                $link->restore();
             } else {
                $this->isOpen();
@@ -50,7 +50,7 @@ class GuestLink extends Component
                $this->isOpen();
             } else {
                $link = Link::create([
-                  'user_id' => 2,
+                  'user_id' => 3,
                   'name' => $this->new['name'],
                   'cname' => empty($this->new['cname']) ? null : $this->new['cname'],
                   'url' => empty($this->new['url']) ? "https://" : $this->new['url'],
