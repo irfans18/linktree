@@ -22,7 +22,7 @@ class IsAdmin
       // } else {
       //   return redirect('/');
       // }
-      if(Auth::user() && Auth::user()->id == 1) {
+      if(Auth::user() && Auth::user()->role == 30) {
         return $next($request);
       } else {
         return redirect('/');

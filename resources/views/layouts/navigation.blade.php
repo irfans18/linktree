@@ -19,7 +19,7 @@
                </x-nav-link>
             </div>
 
-            @if (Auth::user()->id == 1)
+            @if (Auth::user()->role == 30)
                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                   <x-nav-link :href="route('all')" :active="request()->routeIs('all')">
                      {{ __('All Links') }}
@@ -83,7 +83,7 @@
          </x-responsive-nav-link>
       </div>
 
-      @if (Auth::user()->id == 1)
+      @if (Auth::user()->role == 30)
          <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('all')" :active="request()->routeIs('all')">
                {{ __('All Links') }}
