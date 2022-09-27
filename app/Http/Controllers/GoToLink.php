@@ -17,8 +17,8 @@ class GoToLink extends Controller
          // dd($param);
          return redirect()->route('dashboard');
       } else {
-         $link =  Link::where('name', 'like', '%' . $param . '%')
-            ->orWhere('cname', 'like', '%' . $param . '%')->first();
+         $link =  Link::where('name', $param)
+            ->orWhere('cname', $param)->first();
          $count = $link->hit;
          $link->hit = $count+1;
          $link->save();
