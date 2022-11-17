@@ -88,6 +88,7 @@
             </tbody>
          </table>
       </div>
+      {{ $links->links() }}
 
       {{-- small screen --}}
       <div class="my-6 flex justify-center md:hidden">

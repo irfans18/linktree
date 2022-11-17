@@ -133,6 +133,8 @@
          </tbody>
       </table>
    </div>
+   {{ $links->links() }}
+
 </div>
             
 
