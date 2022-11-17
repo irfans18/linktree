@@ -42,7 +42,7 @@ class LinkManager extends Component
          $link = Link::withTrashed()->where('name', $this->new['name'])
             ->orWhere('cname', $this->new['name'])->first();
          if ($link != null) {
-            if ($link->user_id == Auth::user()->id) {
+            if ($link->user_id == Auth::user()->id || Auth::user()->role == 30) {
                $link->restore();
             } else {
                $this->isOpen();
