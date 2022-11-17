@@ -2,7 +2,8 @@
    <div class="flex justify-center">
       <input type="text" wire:model.live="search" wire:keydown.enter="create" class="w-1/2 rounded-full"
          placeholder="search or add new">
-      <button wire:click="create()" type="submit" class="bg-blue-600 mx-2 px-4 text-white text-2xl font-bold rounded-full">
+      <button wire:click="create()" type="submit"
+         class="bg-blue-600 mx-2 px-4 text-white text-2xl font-bold rounded-full">
          +
       </button>
    </div>
@@ -116,4 +117,5 @@
          </tbody>
       </table>
    </div>
+   {{ $links->links() }}
 </div>
