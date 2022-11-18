@@ -117,5 +117,5 @@
          </tbody>
       </table>
    </div>
-   {{ $links->links() }}
+      {{ $links->links() }}
 </div>
